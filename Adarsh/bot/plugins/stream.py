@@ -10,6 +10,7 @@ from urllib.parse import quote_plus
 from pyrogram import filters, Client
 from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import WebAppInfo
 
 from Adarsh.utils.file_properties import get_name, get_hash, get_media_file_size
 db = Database(Var.DATABASE_URL, Var.name)
@@ -114,7 +115,8 @@ async def private_receive_handler(c: Client, m: Message):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
                 [InlineKeyboardButton("Watch Online 🖥️", url=stream_link),
-                 InlineKeyboardButton('📥 Fast Download  📥', url=online_link)]])
+                 InlineKeyboardButton('📥 Fast Download  📥', url=online_link)],
+            [InlineKeyboardButton('🧿 Wᴀᴛᴄʜ ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ 🖥', web_app=WebAppInfo(url=stream_link))]])
         )
         await asyncio.sleep(43200)
         await log_msg.delete()
